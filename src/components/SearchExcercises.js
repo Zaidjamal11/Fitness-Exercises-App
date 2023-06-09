@@ -1,9 +1,80 @@
-import React from 'react'
+import React from "react";
+import { useState, useEffect } from "react";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+
+import { exerciseOptions } from "../utils/fetchData";
+import { fetchData } from '../utils/fetchData';
+import { Search } from "@mui/icons-material";
+
 
 const SearchExcercises = () => {
+  
+  const [ search, setSearch] = useState('');
+  const [SearchExcercises, setExercises] = useState([]);
+
+
+  const handleSearch = async () => {
+    if (search) {
+      const exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
+
+
+       const searchedExercises = exercisesData.filter(
+        (exercise) => exercise.name.toLowerCase().includes(search)
+        || exercise.target.toLowerCase().includes(search)
+        || exercise.equipment.toLowerCase().includes(search) 
+        || exercise.bodyPart.toLowerCase().includes(search)
+       );
+
+       setSearch('');
+       setExercises(searchedExercises);
+    }
+  }
+
+
   return (
-    <div>SearchExcercises</div>
-  )
-}
+    <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
+      <Typography
+        fontWeight={700}
+        sx={{
+          fontSize: { lg: "44px", xs: "30px" },
+        }}
+        mb="50px"
+        textAlign="center"
+      >
+        Awesome Excercises you <br /> Should Know
+      </Typography>
+
+      <Box position="relative" mb="72px">
+        <TextField
+          sx={{
+            input: { fontWeight: "700", border: "none", borderRadius: "5px" },
+            width: { lg: '800px', xs: '350px' },
+            backgroundColor: '#fff',
+            borderRadius: '40px'
+          }}
+          height="76px"
+          value={search}
+          onChange={(e) => {setSearch(e.target.value.toLowerCase())}}
+          placeholder="Search Exercises"
+          type="text"
+        />
+        <Button className="search-btn"
+          sx={{
+            bgcolor: '#ff2625',
+            color: '#fff',
+            textTransform: 'none',
+            width: { lg : '175px', xs: '80px'},
+            fontSize: { lg : '20px', xs: '14px'},
+            height: '50px',
+            position: 'absolute' ,
+            right: '1'
+          }}
+          onClick={handleSearch}
+        
+        >Search</Button>
+      </Box>
+    </Stack>
+  );
+};
 
 export default SearchExcercises;
