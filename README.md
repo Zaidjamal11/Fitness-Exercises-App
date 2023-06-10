@@ -16,9 +16,9 @@ proper execution.
 **Exercise Details:** Gain in-depth information for each exercise, including instructions, variations, and recommended sets and repetitions.
 
 
-**YouTube Integration: **Watch related exercise videos directly within the app, sourced from YouTube, to visualize proper form and technique.
+**YouTube Integration:** Watch related exercise videos directly within the app, sourced from YouTube, to visualize proper form and technique.
 
-**Similar Exercises: **Discover alternative exercises that target similar muscle groups or offer variations to diversify your workouts
+**Similar Exercises:** Discover alternative exercises that target similar muscle groups or offer variations to diversify your workouts
 
 effectively.
 
